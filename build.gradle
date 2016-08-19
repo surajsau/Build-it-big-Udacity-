@@ -44,6 +44,6 @@ task runAndroidTests(dependsOn: ':app:connectedAndroidTest') {
 }
 
 task runServerTests(dependsOn: ['startServer', 'runAndroidTests', 'stopServer']) {
-    tasks.getByPath(':app:connectedAndroidTest').mustRunAfter(':backend:appengineRun')
-    tasks.getByPath(':app:connectedAndroidTest').finalizedBy(':backend:appengineStop')
+    tasks.getByPath(':app:connectedAndroidTest').mustRunAfter(':jokesbackend:appengineRun')
+    tasks.getByPath(':app:connectedAndroidTest').finalizedBy(':jokesbackend:appengineStop')
 }
