@@ -1,4 +1,4 @@
-package com.udacity.gradle.builditbigger.free;
+package com.udacity.gradle.builditbigger.paid;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -10,12 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.surajsau.jokerdisplay.IContants;
 import com.surajsau.jokerdisplay.JokerDisplayActivity;
 import com.udacity.gradle.builditbigger.EndpointAsyncTask;
-import com.udacity.gradle.builditbigger.EndpointAsyncTask.ResponseListener;
 import com.udacity.gradle.builditbigger.MainPresenter;
 import com.udacity.gradle.builditbigger.MainPresenterImpl;
 import com.udacity.gradle.builditbigger.MainView;
@@ -25,10 +22,9 @@ import com.udacity.gradle.builditbigger.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment implements MainView, View.OnClickListener, ResponseListener {
+public class MainActivityFragment extends Fragment implements MainView, View.OnClickListener, EndpointAsyncTask.ResponseListener {
 
     private Button btnShowJoke;
-    private AdView mAdView;
     private ProgressBar mProgress;
 
     private MainPresenter mPresenter;
@@ -52,23 +48,11 @@ public class MainActivityFragment extends Fragment implements MainView, View.OnC
     @Override
     public void onResume() {
         super.onResume();
-        buildAd();
-    }
-
-    private void buildAd() {
-        // Create an ad request. Check logcat output for the hashed device ID to
-        // get test ads on a physical device. e.g.
-        // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
-        mAdView.loadAd(adRequest);
     }
 
     private void initResources(View view) {
         mPresenter = new MainPresenterImpl(this);
 
-        mAdView = (AdView) view.findViewById(R.id.adView);
         btnShowJoke = (Button) view.findViewById(R.id.btnShowJoke);
         mProgress = (ProgressBar) view.findViewById(R.id.progress);
         btnShowJoke.setOnClickListener(this);

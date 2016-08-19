@@ -48,7 +48,7 @@ public class EndpointAsyncTask extends AsyncTask<Void, Void, String> {
 
     private MyApi.Builder setupGCEService() {
         return new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                    .setRootUrl("http://build-it-big-140511.appspot.com/_ah/api")
+                    .setRootUrl("https://build-it-big-140511.appspot.com/_ah/api")
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {

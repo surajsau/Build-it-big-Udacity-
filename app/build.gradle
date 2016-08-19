@@ -34,7 +34,6 @@ android {
         free {
             applicationId 'com.udacity.gradle.builditbigger.free'
         }
-
         paid {
             applicationId 'com.udacity.gradle.builditbigger.paid'
         }
@@ -57,4 +56,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support:support-v4:23.4.0'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:1.9.5'
+    testCompile "org.robolectric:robolectric:3.1.2"
 }

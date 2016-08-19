@@ -2,6 +2,7 @@ package com.surajsau.jokerdisplay;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -21,6 +22,13 @@ public class JokerDisplayActivity extends AppCompatActivity implements JokerDisp
 
         getDataFromBundle();
         initResources();
+
+        setupToolbar();
+    }
+
+    private void setupToolbar() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Joke of the day");
     }
 
     @Override
@@ -44,5 +52,14 @@ public class JokerDisplayActivity extends AppCompatActivity implements JokerDisp
         if(getIntent() != null) {
             joke = getIntent().getStringExtra(IContants.JOKE_STRING);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

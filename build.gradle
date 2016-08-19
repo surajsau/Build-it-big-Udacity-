@@ -17,3 +17,33 @@ allprojects {
         jcenter()
     }
 }
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+task startServer(dependsOn: ':jokesbackend:appengineRun') {
+    project(":jokesbackend").afterEvaluate { backend ->
+        backend.extensions.appengine.daemon = true
+    }
+    doLast {
+        println "starting server"
+    }
+}
+
+task stopServer(dependsOn: ':jokesbackend:appengineStop') {
+    doLast {
+        println "Stopping server"
+    }
+}
+
+task runAndroidTests(dependsOn: ':app:connectedAndroidTest') {
+    doLast {
+        println "run connected tests"
+    }
+}
+
+task runServerTests(dependsOn: ['startServer', 'runAndroidTests', 'stopServer']) {
+    tasks.getByPath(':app:connectedAndroidTest').mustRunAfter(':backend:appengineRun')
+    tasks.getByPath(':app:connectedAndroidTest').finalizedBy(':backend:appengineStop')
+}

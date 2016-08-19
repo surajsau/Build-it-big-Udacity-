@@ -1,11 +1,9 @@
-package com.udacity.gradle.builditbigger.free;
-
-import com.udacity.gradle.builditbigger.EndpointAsyncTask;
+package com.udacity.gradle.builditbigger;
 
 /**
  * Created by surajkumarsau on 12/08/16.
  */
-public class MainPresenterImpl implements MainPresenter, EndpointAsyncTask.ResponseListener {
+public class MainPresenterImpl implements MainPresenter {
 
     private MainView mView;
 
@@ -16,7 +14,7 @@ public class MainPresenterImpl implements MainPresenter, EndpointAsyncTask.Respo
     @Override
     public void requestJoke() {
         mView.showLoader();
-        new EndpointAsyncTask(this).execute();
+        mView.callJokesAsyncTask();
     }
 
     @Override
