@@ -19,6 +19,7 @@
 -dontwarn com.google.api.**
 -keep class com.google.common.** { public *; }
 -dontwarn com.google.common.**
+-keep class com.google.common.** { *; }
 
 -keep class in.surajkumarsau.builditbig.backend.** { *; }
 
